@@ -1,0 +1,73 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script type="text/babel">                                              
+        class App extends React.Component{ 
+            state={                                                                         //React objects
+                name:"Hardik",                                                             //properties
+                age:20
+            }
+            
+            eventOnClick=(e)=>{
+                // console.log(e.target);
+                this.setState({                 //setState is used to change state in components
+                    name:'Akshit',
+                    age:19
+                });
+
+
+                console.log(this.state);           //using arrow function to use this keyword here 
+            }
+
+            eventOnMouseOver(e){
+                console.log(e);
+            }
+
+            eventOnCopy(e){
+                console.log("ThankYouu i am very excited");
+            }
+            
+            handleChange=(e)=>{
+                this.setState({
+                    name:e.target.value
+                })
+            }; 
+
+            handleSubmit=(e)=>{
+                e.preventDefault();
+                console.log("Welcome "+ this.state.name);
+            }
+
+            render() {                                                      
+                return(                                                   
+                    <div className="app-content">
+                        <h1>Heyyy developer...Tell us about yourself</h1>
+                        <p>Hi..I am {this.state.name} and i am {this.state.age}</p>
+                        <button onClick={this.eventOnClick}>Click Me</button>
+                        <button onMouseOver={this.eventOnMouseOver}>Mouse Over</button>
+                        <button onCopy={this.eventOnCopy}>Welcome to learning React..</button> 
+                        <p>What is your full name</p>
+                        <form onSubmit={this.handleSubmit}>
+                            <input type="text" onChange={this.handleChange}/>
+                            <button>Submit</button>
+                        </form>
+
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<App/>,document.getElementById('app'));
+    </script>
+</body>
+</html>
